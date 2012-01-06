@@ -30,7 +30,7 @@ Vim Bundle Manager
 ### What?
 
 Vim Bundle Manager (VBM) keeps track of installed vim scripts,
-installs/updates vim scripts from <vimbundles.org>, uninstalls vim scripts and searches vim
+installs/updates vim scripts from [vimbundles.org](http://vimbundles.org), uninstalls vim scripts and searches vim
 scripts by name.
 
 ### Why?
@@ -48,7 +48,7 @@ With Vim Bundle Manager, you are able to manipulate Vim Bundles like this:
     $ vbm search command-t
     $ vbm uninstall command-t
 
-You are also able to manipulate a certain version of a vim bundle:
+You are also able to install a certain version of a vim bundle:
 
     $ vbm install command-t v1.0
 
