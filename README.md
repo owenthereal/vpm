@@ -1,12 +1,12 @@
-Vim Bundle Manager
+Vim Plugin Manager
 ==================
 
-Vim Bundle
+Vim Plugin
 ----------
 
 ### What?
 
-A Vim Bundle is a package that contains vim scripts and a vim bundle specification, a.k.a. "vbspec".
+A Vim Plugin is a package that contains vim scripts and a vim plugin specification, a.k.a. "vbspec".
 
 
 ### Why?
@@ -24,13 +24,13 @@ The directory structure of a vim bundle constains a file ending with *.vbspec in
     - command-t.vbspec
     - ...
 
-Vim Bundle Manager
+Vim Plugin Manager
 ------------------
 
 ### What?
 
-Vim Bundle Manager (VBM) keeps track of installed vim scripts,
-installs/updates vim scripts from [vimbundles.org](http://vimbundles.org), uninstalls vim scripts and searches vim
+Vim Plugin Manager (VPM) keeps track of installed vim scripts,
+installs/updates vim scripts from [vim-plugins.org](http://vim-plugins.org), uninstalls vim scripts and searches vim
 scripts by name.
 
 ### Why?
@@ -40,29 +40,29 @@ installing or updating a version of a vim script.
 
 ### How?
 
-With Vim Bundle Manager, you are able to manipulate Vim Bundles like this:
+With Vim Plugin Manager, you are able to manipulate Vim Plugins like this:
 
-    $ vbm install command-t
-    $ vbm update command-t
-    $ vbm list
-    $ vbm search command-t
-    $ vbm uninstall command-t
+    $ vpm install command-t
+    $ vpm update command-t
+    $ vpm list
+    $ vpm search command-t
+    $ vpm uninstall command-t
 
 You are also able to install a certain version of a vim bundle:
 
-    $ vbm install command-t v1.0
+    $ vpm install command-t v1.0
 
-VimBundles.org
+Vim-Plugins.org
 --------------
 
-VimBundles.org is a community vim bundle host. Vim Bundle authors
+Vim-Plugins.org is a community vim bundle host. Vim Plugin authors
 publish their bundled vim scripts to the host and keep track of basic statistics
 of their vim bundles.
 
-To publish/yank a Vim Bundle:
+To publish/yank a Vim Plugin:
 
-    $ vbm publish
-    $ vbm yank
+    $ vpm publish
+    $ vpm yank
 
 Similar Projects
 ----------------
