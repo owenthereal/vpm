@@ -1,3 +1,3 @@
-module Vpm
+module VPM
   VERSION = "0.0.1"
 end

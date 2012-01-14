@@ -4,12 +4,11 @@ require "vpm/version"
 
 Gem::Specification.new do |s|
   s.name        = "vpm"
-  s.version     = Vpm::VERSION
+  s.version     = VPM::VERSION
   s.authors     = ["Jingwen Owen Ou"]
   s.email       = ["jingweno@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{An awesome utility for managing VIM plugins}
 
   s.rubyforge_project = "vpm"
 
@@ -19,6 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "turn"
   # s.add_runtime_dependency "rest-client"
 end
