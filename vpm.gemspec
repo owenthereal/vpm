@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Jingwen Owen Ou", "Michael Baker"]
   s.email       = ["jingweno@gmail.com"]
   s.homepage    = "https://github.com/jingweno/vpm"
-  s.summary     = %q{An awesome utility for managing VIM plugins}
+  s.summary     = %q{An awesome utility for managing Vim plugins}
 
   s.rubyforge_project = "vpm"
 

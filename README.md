@@ -1,12 +1,14 @@
 Vim Plugin Manager
 ==================
 
+Vim Plugin Manager is an awesome utility for managing Vim plugins
+
 Vim Plugin
 ----------
 
 ### What?
 
-A Vim Plugin is a package that contains vim scripts and a vim plugin specification, a.k.a. "vbspec".
+A Vim plugin is a package that contains vim scripts and a vim plugin specification, a.k.a. "vpspec".
 
 
 ### Why?
@@ -16,12 +18,12 @@ vim scripts.
 
 ### How?
 
-A vbspec, like a [gemspec](http://docs.rubygems.org/read/chapter/20), consists of several attributes.
+A vpspec, like a [gemspec](http://docs.rubygems.org/read/chapter/20), consists of several attributes.
 For example, a description, example usage, notes, and more.
 
-The directory structure of a vim bundle constains a file ending with *.vbspec in the root directory:
+The directory structure of a vim plugin constains a file ending with *.vpspec in the root directory:
 
-    - command-t.vbspec
+    - command-t.vpspec
     - ...
 
 Vim Plugin Manager
@@ -40,26 +42,26 @@ installing or updating a version of a vim script.
 
 ### How?
 
-With Vim Plugin Manager, you are able to manipulate Vim Plugins like this:
+With Vim Plugin Manager, you are able to manipulate Vim plugins like this:
 
     $ vpm install command-t
     $ vpm update command-t
     $ vpm list
     $ vpm search command-t
-    $ vpm uninstall command-t
+    $ vpm remove command-t
 
 You are also able to install a certain version of a vim bundle:
 
     $ vpm install command-t v1.0
 
 Vim-Plugins.org
---------------
+---------------
 
-Vim-Plugins.org is a community vim bundle host. Vim Plugin authors
-publish their bundled vim scripts to the host and keep track of basic statistics
-of their vim bundles.
+[vim-plugins.org](http://vim-plugins.org) is a community vim plugin host. Vim plugin authors
+publish their vim scripts to the host and keep track of basic statistics
+of their vim plugins.
 
-To publish/yank a Vim Plugin:
+To publish/yank a Vim plugin:
 
     $ vpm publish
     $ vpm yank
