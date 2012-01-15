@@ -5,7 +5,7 @@ describe VPM::ManifestParser do
     parser = VPM::ManifestParser.new
     parser.parse "plugin 'command-t', :git => 'https://github.com/agitrepo.git', :tag => '1.0.2'"
 
-    parser.plugins.size.must_equal 1
+    parser.plugins.size.should == 1
   end
 
   it "parses multiple plugins" do
@@ -16,7 +16,7 @@ describe VPM::ManifestParser do
       plugin 'surround', :git => 'http://anothersite.com/repo.git'
     END
 
-    parser.plugins.size.must_equal 3
+    parser.plugins.size.should == 3
   end
 
   it "ignores duplicate entries" do
@@ -26,7 +26,7 @@ describe VPM::ManifestParser do
       plugin 'command-t', :git => 'https://github.com/agitrepo.git', :tag => '1.0.2'
     END
 
-    parser.plugins.size.must_equal 1
+    parser.plugins.size.should == 1
   end
 
   it "parses to the right class of Plugin" do
@@ -36,6 +36,6 @@ describe VPM::ManifestParser do
       plugin 'command-t', :git => 'https://github.com/agitrepo.git', :tag => '1.0.2'
     END
 
-    parser.plugins.first.must_be_kind_of VPM::GitPlugin
+    parser.plugins.first.should be_kind_of(VPM::GitPlugin)
   end
 end

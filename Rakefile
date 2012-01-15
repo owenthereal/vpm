@@ -2,9 +2,8 @@ require "bundler/gem_tasks"
 
 task :default => :spec
 
-require 'rake/testtask'
-Rake::TestTask.new(:spec) do |test|
-  test.libs << 'lib' << 'spec'
-  test.pattern = 'spec/**/*_spec.rb'
-  test.verbose = true
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = ["--format documentation", "--color"]
+  t.pattern = "./spec/**/*_spec.rb"
 end
