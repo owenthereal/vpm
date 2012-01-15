@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["jingweno@gmail.com"]
   s.homepage    = "https://github.com/jingweno/vpm"
   s.summary     = %q{An awesome utility for managing Vim plugins}
+  s.description = %q{An awesome utility for managing Vim plugins}
 
   s.rubyforge_project = "vpm"
 
