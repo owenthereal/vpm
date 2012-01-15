@@ -32,7 +32,13 @@ module VPM
   end
 
   def self.run_command(command, plugin_name, args)
-    options = Options.parse!(command, args)
+    parser = Options.parser(command)
+    options = parser.parse!(args)
+    unless plugin_name
+      puts parser.opts_parser
+      exit
+    end
+
     plugin = Plugin.new(plugin_name, options)
     plugin.run_command(command)
   end

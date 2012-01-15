@@ -2,17 +2,21 @@ require 'optparse'
 
 module VPM
   module Options
-    module Install
-      def self.parse!(args)
+    class Install
+      attr_reader :opts_parser
+
+      def parse!(args)
         options = {}
         parser(options).parse!(args)
 
         options
       end
 
-      def self.parser(options)
-        OptionParser.new do |parser|
-          parser.banner = "Usage: vpm insatll <plugin> [options]"
+      private
+
+      def parser(options)
+        @opts_parser ||= OptionParser.new do |parser|
+          parser.banner = "Usage: vpm install <plugin> [options]"
 
           parser.on("-g", "--git [REMOTE]", "Install from a Git repository") do |git_url|
             options[:type] = :git
