@@ -1,5 +1,9 @@
 module VPM
   class ManifestParser
+    def self.parse(content)
+      self.new.parse(content)
+    end
+
     def initialize
       @plugins = {}
     end

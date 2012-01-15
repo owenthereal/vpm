@@ -14,16 +14,15 @@ module VPM
   def self.install_all_plugins
     vim_plugins_file = File.join(File.expand_path('.'), 'VimPlugins')
     content = File.read(vim_plugins_file)
-    parser = ManifestParser.new
-    plugins = parser.parse(content)
+    plugins = ManifestParser.parse(content)
     plugins.each(&:install)
   end
 
   def self.plugin_dir
     @dir_path ||= begin
-                   dir_path = ENV['VPM_PLUGIN_DIR'] || File.join(ENV['HOME'], '.vim', 'bundle')
-                   FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
-                   dir_path
-                 end
+                    dir_path = ENV['VPM_PLUGIN_DIR'] || File.join(ENV['HOME'], '.vim', 'bundle')
+                    FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
+                    dir_path
+                  end
   end
 end

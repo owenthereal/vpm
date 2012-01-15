@@ -5,9 +5,9 @@ require "vpm/version"
 Gem::Specification.new do |s|
   s.name        = "vpm"
   s.version     = VPM::VERSION
-  s.authors     = ["Jingwen Owen Ou"]
+  s.authors     = ["Jingwen Owen Ou", "Michael Baker"]
   s.email       = ["jingweno@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/jingweno/vpm"
   s.summary     = %q{An awesome utility for managing VIM plugins}
 
   s.rubyforge_project = "vpm"
