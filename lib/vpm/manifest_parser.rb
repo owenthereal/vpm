@@ -14,7 +14,20 @@ module VPM
     end
 
     def plugin(name, options = {})
-      @plugins[name] = Plugin.create(name, options)
+      # FIXME hardcode to install for now
+      options = VPM::Options.parse!("install", options_to_args(options))
+      @plugins[name] = Plugin.new(name, options)
+    end
+
+    def options_to_args(options)
+      args = []
+
+      if options[:git]
+        args += ["--git", options[:git]]
+        args += ["--tag", options[:tag]] if options[:tag]
+      end
+
+      args
     end
 
     def plugins

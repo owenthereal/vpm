@@ -28,14 +28,4 @@ describe VPM::ManifestParser do
 
     parser.plugins.size.should == 1
   end
-
-  it "parses to the right class of Plugin" do
-    parser = VPM::ManifestParser.new
-    parser.parse <<-END
-      plugin 'command-t', :git => 'https://github.com/agitrepo.git', :tag => '1.0.2'
-      plugin 'command-t', :git => 'https://github.com/agitrepo.git', :tag => '1.0.2'
-    END
-
-    parser.plugins.first.should be_kind_of(VPM::GitPlugin)
-  end
 end
