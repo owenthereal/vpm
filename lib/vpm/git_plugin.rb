@@ -4,11 +4,11 @@ module VPM
 
     def initialize(name, options)
       super
-      git_commander = GitCommander
+      self.git_commander = GitCommander
     end
 
     def install
-      git_commander.clone(options[:git], VPM.plugin_dir)
+      git_commander.clone(options[:git], VPM.bundle_dir_path)
     end
 
     module GitCommander
