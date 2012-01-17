@@ -9,5 +9,9 @@ module VPM
       `git checkout -b #{tag} #{tag}`
       $?.to_i == 0 ? true : false
     end
+
+    def self.current_revision
+      `git rev-parse --verify HEAD`.strip
+    end
   end
 end
