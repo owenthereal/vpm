@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'vpm'
-VPM.run(ARGV)
+VPM::Runner.autorun

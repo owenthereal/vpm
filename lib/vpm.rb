@@ -3,7 +3,9 @@ require 'fileutils'
 require 'vpm/version'
 require 'vpm/manifest_parser'
 require 'vpm/plugin'
+require 'vpm/plugins'
 require 'vpm/git'
+require 'vpm/runner'
 
 # options
 require 'vpm/command_options'
@@ -13,42 +15,34 @@ require 'vpm/command_options/install'
 require 'vpm/commands/install'
 
 module VPM
-  def self.run(args)
-    command = args[0]
-    plugin_name = args[1]
-
-    if command.nil?
-      install_all_plugins
-    else
-      run_command(command, plugin_name, args)
-    end
+  def self.plugins
+    @plugins ||= Plugins.load_from_file(plugins_file)
   end
 
-  def self.install_all_plugins
-    vim_plugins_file = File.join(File.expand_path('.'), 'VimPlugins')
-    content = File.read(vim_plugins_file)
-    plugins = ManifestParser.parse(content)
-    plugins.each(&:install)
-  end
-
-  def self.run_command(command, plugin_name, args)
-    parser = CommandOptions.parser(command)
-    options = parser.parse!(args)
-    type = options.delete(:type)
-    unless plugin_name && type
-      puts parser.opts_parser
-      exit
-    end
-
-    plugin = Plugin.new(plugin_name, type, options)
-    plugin.run_command(command)
+  def self.vim_dir
+    @vim_dir_path ||= begin
+                        dir_path = ENV['VPM_VIM_DIR'] ? File.expand_path(ENV['VPM_VIM_DIR']) : File.join(ENV['HOME'], '.vim')
+                        FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
+                        dir_path
+                      end
   end
 
   def self.plugin_dir
-    @dir_path ||= begin
-                    dir_path = ENV['VPM_PLUGIN_DIR'] ? File.expand_path(ENV['VPM_PLUGIN_DIR']) : File.join(ENV['HOME'], '.vim', 'bundle')
-                    FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
-                    dir_path
-                  end
+    @plugin_dir_path ||= begin
+                           dir_path = File.join(vim_dir, 'bundle')
+                           FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
+                           dir_path
+                         end
+  end
+
+  def self.plugins_file
+    @insatlled_plugins_file ||= begin
+                                  vpm_dir_path = File.join(vim_dir, 'vpm')
+                                  FileUtils.mkdir_p vpm_dir_path unless Dir.exists?(vpm_dir_path)
+
+                                  plugins_file_path = File.join(vpm_dir_path, 'plugins.yaml')
+                                  FileUtils.touch(plugins_file_path)
+                                  plugins_file_path
+                                end
   end
 end
