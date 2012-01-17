@@ -1,9 +1,7 @@
 module VPM
   module Commands
     module Install
-      def self.run!(plugin_name, options)
-        type = options.delete(:type)
-
+      def self.run!(plugin_name, type, options)
         if type == :git
           GitInstall.run!(plugin_name, options)
         end
