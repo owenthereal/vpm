@@ -15,7 +15,7 @@ module VPM
 
     def plugin(name, options = {})
       # FIXME hardcode to install for now
-      options = VPM::Options.parse!("install", options_to_args(options))
+      options = VPM::CommandOptions.parse!("install", options_to_args(options))
       @plugins[name] = Plugin.new(name, options)
     end
 

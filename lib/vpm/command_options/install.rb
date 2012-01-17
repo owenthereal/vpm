@@ -1,7 +1,7 @@
 require 'optparse'
 
 module VPM
-  module Options
+  module CommandOptions
     class Install
       attr_reader :opts_parser
 

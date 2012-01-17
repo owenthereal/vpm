@@ -6,8 +6,8 @@ require 'vpm/plugin'
 require 'vpm/git'
 
 # options
-require 'vpm/options'
-require 'vpm/options/install'
+require 'vpm/command_options'
+require 'vpm/command_options/install'
 
 # commands
 require 'vpm/commands/install'
@@ -32,7 +32,7 @@ module VPM
   end
 
   def self.run_command(command, plugin_name, args)
-    parser = Options.parser(command)
+    parser = CommandOptions.parser(command)
     options = parser.parse!(args)
     unless plugin_name
       puts parser.opts_parser

@@ -1,5 +1,5 @@
 module VPM
-  module Options
+  module CommandOptions
     def self.parser(command)
       if command == "install"
         Install.new
