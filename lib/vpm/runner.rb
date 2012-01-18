@@ -13,14 +13,13 @@ module VPM
 
     def self.run(args)
       command = args[0]
-      plugin_name = args[1]
 
       # TODO: extract out into CommandLine.run(args)
       result = false
       if command.nil?
         result = install_all_plugins
       else
-        result = run_command(command, plugin_name, args)
+        result = run_command(command, args)
       end
 
       result ? 0 : 1
@@ -38,9 +37,11 @@ module VPM
       true
     end
 
-    def self.run_command(command, plugin_name, args)
+    def self.run_command(command, args)
       parser = CommandOptions.parser(command)
       options = parser.parse!(args)
+
+      plugin_name = args[1]
       type = options.delete(:type)
       unless plugin_name && type
         puts parser.opts_parser
