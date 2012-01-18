@@ -1,28 +1,32 @@
 require 'fileutils'
+require 'tmpdir'
+require 'transaction'
 require 'vpm/version'
 require 'vpm/manifest_parser'
 require 'vpm/plugin'
 require 'vpm/git_plugin'
+require 'vpm/commands'
+require 'vpm/tasks'
 
 module VPM
   def self.run(args)
-    if args.empty?
-      install_all_plugins
-    end
+    command = args.shift.to_s.capitalize
+    Commands[command].call args
   end
 
-  def self.install_all_plugins
-    vim_plugins_file = File.join(File.expand_path('.'), 'VimPlugins')
-    content = File.read(vim_plugins_file)
-    plugins = ManifestParser.parse(content)
-    plugins.each(&:install)
+  def self.bundle_dir_path
+    File.join(vim_dir_path, 'bundle')
   end
 
-  def self.plugin_dir
-    @dir_path ||= begin
-                    dir_path = ENV['VPM_PLUGIN_DIR'] || File.join(ENV['HOME'], '.vim', 'bundle')
-                    FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
-                    dir_path
-                  end
+  def self.vim_dir_path
+    ENV['VPM_VIM_DIR'] || File.expand_path(File.join(ENV['HOME'], '.vim'))
+  end
+
+  def self.vpmrc_path
+    File.expand_path File.join(ENV['HOME'], '.vpmrc')
+  end
+
+  def self.vimrc_path
+    File.expand_path File.join("~", ".vimrc")
   end
 end
