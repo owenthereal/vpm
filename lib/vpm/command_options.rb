@@ -1,3 +1,5 @@
+require 'opts_parser'
+
 module VPM
   module CommandOptions
     def self.parser(command)

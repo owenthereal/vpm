@@ -42,12 +42,12 @@ module VPM
       options = parser.parse!(args)
 
       plugin_name = args[1]
-      type = options.delete(:type)
-      unless plugin_name && type
+      unless plugin_name
         puts parser.opts_parser
         exit
       end
 
+      type = options.delete(:type)
       plugin = Plugin.new(plugin_name, type, options)
       plugin.run_command(command)
     end
