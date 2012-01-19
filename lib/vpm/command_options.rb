@@ -1,4 +1,4 @@
-require 'opts_parser'
+require 'optparse'
 
 module VPM
   module CommandOptions

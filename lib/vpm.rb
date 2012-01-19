@@ -9,6 +9,7 @@ require 'vpm/runner'
 
 # options
 require 'vpm/command_options'
+require 'vpm/command_options/abstract_command_options'
 require 'vpm/command_options/install'
 
 # commands
