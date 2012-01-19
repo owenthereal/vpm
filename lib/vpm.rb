@@ -28,7 +28,7 @@ module VPM
     @plugins ||= Plugins.load_from_file(plugins_file)
   end
 
-  def self.vim_dir
+  def self.vim_dir_path
     @vim_dir_path ||= begin
                         dir_path = ENV['VPM_VIM_DIR'] ? File.expand_path(ENV['VPM_VIM_DIR']) : File.join(ENV['HOME'], '.vim')
                         FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
@@ -36,9 +36,9 @@ module VPM
                       end
   end
 
-  def self.bundle_dir
-    @plugin_dir_path ||= begin
-                           dir_path = File.join(vim_dir, 'bundle')
+  def self.bundle_dir_path
+    @bundle_dir_path ||= begin
+                           dir_path = File.join(vim_dir_path, 'bundle')
                            FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
                            dir_path
                          end

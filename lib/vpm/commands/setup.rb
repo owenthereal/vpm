@@ -49,7 +49,7 @@ private
   end
 
   def pathogen_installed?
-    plugin_directory = VPM.bundle_dir_path
+    plugin_directory = VPM.bundle_dir
     pathogen_file    = File.join(VPM.vim_dir_path, 'autoload', 'pathogen.vim')
     Dir.exists?(plugin_directory) && File.exists?(pathogen_file)
   end

@@ -6,12 +6,6 @@ describe CreateBundleDir do
   end
 
   context "#perform" do
-    it "creates #{VPM.bundle_dir_path} if it doesn't already exist" do
-      Dir.exists?(VPM.bundle_dir_path).should be_false
-      @task.perform
-      Dir.exists?(VPM.bundle_dir_path).should be_true
-    end
-
     it "works even if the directory already exists" do
       Dir.exists?(VPM.bundle_dir_path).should be_true
       @task.perform

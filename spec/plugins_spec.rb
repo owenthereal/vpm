@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'tempfile'
-
 describe VPM::Plugins do
   it "dumps plugins as YAML" do
     plugins = VPM::Plugins.new
