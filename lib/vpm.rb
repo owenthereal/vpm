@@ -21,7 +21,7 @@ require 'vpm/commands/install'
 module VPM
   def self.run(args)
     command = args.shift.to_s.capitalize
-    Commands[command].call args
+    VPM::Commands[command].call args
   end
 
   def self.plugins

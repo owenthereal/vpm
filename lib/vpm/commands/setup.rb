@@ -1,4 +1,4 @@
-class Commands::Setup
+class VPM::Commands::Setup
   attr_accessor :pathogen_cloner
   attr_accessor :bundle_dir_creator
   attr_accessor :autoload_dir_creator

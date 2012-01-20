@@ -1,4 +1,4 @@
-class Commands::InvalidCommand
+class VPM::Commands::InvalidCommand
   def initialize(invalid_command)
     @invalid_command = invalid_command
   end

@@ -1,4 +1,4 @@
-module Commands
+module VPM::Commands
   def self.[](command)
     if command.empty?
       InstallAllPlugins

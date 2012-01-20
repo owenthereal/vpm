@@ -1,5 +1,5 @@
 module VPM
-  module Commands
+  module VPM::Commands
     module Install
       def self.run(plugin)
         type = plugin.type
