@@ -3,14 +3,7 @@ describe VPM::Plugins do
   it "dumps plugins as YAML" do
     plugins = VPM::Plugins.new
     plugins.plugin_installed(VPM::Plugin.new("command-t", :git, :remote => "http://xxx.git", :tag => "1.2.0"))
-    plugins.dump.should == <<-EOS
----
-- :name: command-t
-  :type: :git
-  :options:
-    :remote: http://xxx.git
-    :tag: 1.2.0
-    EOS
+    plugins.dump.should == YAML.dump([{:name => "command-t", :type => :git, :options => {:remote => "http://xxx.git", :tag => "1.2.0"}}])
   end
 
   it "loads plugins from YAML" do
@@ -42,8 +35,7 @@ describe VPM::Plugins do
 
   it "returns empty when loading from an empty file" do
     FileUtils.touch('foo')
-    file = File.new('foo')
-    plugins = VPM::Plugins.load_from_file(file)
+    plugins = VPM::Plugins.load_from_file('foo')
     plugins.all.should be_empty
   end
 end

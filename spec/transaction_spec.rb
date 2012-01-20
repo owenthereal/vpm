@@ -36,10 +36,10 @@ describe Transaction do
       result = []
       @task_one = Object.new
       @task_two = Object.new
-      @task_one.define_singleton_method "perform" do true end
-      @task_one.define_singleton_method "undo"    do result << "task one" end
-      @task_two.define_singleton_method "perform" do false end
-      @task_two.define_singleton_method "undo"    do result << "task two" end
+      @task_one.stub(:perform).and_return true
+      @task_one.stub(:undo) do result << "task one" end
+      @task_two.stub(:perform).and_return false
+      @task_two.stub(:undo) do result << "task two" end
       @transaction << @task_one
       @transaction << @task_two
       @transaction.perform
