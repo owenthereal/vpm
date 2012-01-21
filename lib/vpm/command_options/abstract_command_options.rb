@@ -1,3 +1,5 @@
+require 'optparse'
+
 module VPM
   module CommandOptions
     class AbstractCommandOptions
@@ -5,7 +7,9 @@ module VPM
 
       def parse!(args)
         options = {}
+
         parser(options).parse!(args)
+        options[:plugin_name] = args.shift
 
         options
       end

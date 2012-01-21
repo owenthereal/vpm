@@ -1,11 +1,13 @@
 module VPM
-  module VPM::Commands
+  module Commands
     module Install
-      def self.run(plugin)
+      def self.call(options = nil)
+        plugin = VPM::Plugin.new(options[:plugin_name], options[:type], options[:options])
         type = plugin.type
-        if type == :git
-          GitInstall.run(plugin)
-        end
+        result = if type == :git
+                   GitInstall.run(plugin)
+                 end
+        VPM.plugins.plugin_installed(self) if result
       end
 
       module GitInstall

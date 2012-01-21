@@ -1,5 +1,7 @@
 module VPM::Commands
   def self.[](command)
+    command = command.capitalize
+
     if command.empty?
       InstallAllPlugins
     elsif self.const_defined?(command)

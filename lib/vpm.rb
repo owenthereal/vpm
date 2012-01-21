@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'tmpdir'
 require 'transaction'
 require 'vpm/version'
 require 'vpm/manifest_parser'
@@ -11,17 +10,17 @@ require 'vpm/commands'
 require 'vpm/tasks'
 
 # options
-require 'vpm/command_options'
 require 'vpm/command_options/abstract_command_options'
-require 'vpm/command_options/install'
+require 'vpm/command_options'
 
 # commands
-require 'vpm/commands/install'
+require 'vpm/commands'
 
 module VPM
   def self.run(args)
-    command = args.shift.to_s.capitalize
-    VPM::Commands[command].call args
+    command = args.shift
+    options = VPM::CommandOptions[command].parse!(args)
+    VPM::Commands[command].call options
   end
 
   def self.plugins
