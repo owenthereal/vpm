@@ -1,5 +1,5 @@
 module VPM
-  module Commands
+  module VPM::Commands
     module Install
       def self.run(plugin)
         type = plugin.type
@@ -13,7 +13,7 @@ module VPM
           plugin_name = plugin.name
           options = plugin.options
 
-          chdir(VPM.plugin_dir) do
+          chdir(VPM.bundle_dir_path) do
             result = VPM::Git.clone(options[:remote], plugin_name)
 
             chdir(File.join(VPM.plugin_dir, plugin_name)) do

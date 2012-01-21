@@ -1,11 +1,14 @@
 require 'fileutils'
-
+require 'tmpdir'
+require 'transaction'
 require 'vpm/version'
 require 'vpm/manifest_parser'
 require 'vpm/plugin'
 require 'vpm/plugins'
 require 'vpm/git'
 require 'vpm/runner'
+require 'vpm/commands'
+require 'vpm/tasks'
 
 # options
 require 'vpm/command_options'
@@ -16,11 +19,16 @@ require 'vpm/command_options/install'
 require 'vpm/commands/install'
 
 module VPM
+  def self.run(args)
+    command = args.shift.to_s.capitalize
+    VPM::Commands[command].call args
+  end
+
   def self.plugins
     @plugins ||= Plugins.load_from_file(plugins_file)
   end
 
-  def self.vim_dir
+  def self.vim_dir_path
     @vim_dir_path ||= begin
                         dir_path = ENV['VPM_VIM_DIR'] ? File.expand_path(ENV['VPM_VIM_DIR']) : File.join(ENV['HOME'], '.vim')
                         FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
@@ -28,9 +36,9 @@ module VPM
                       end
   end
 
-  def self.plugin_dir
-    @plugin_dir_path ||= begin
-                           dir_path = File.join(vim_dir, 'bundle')
+  def self.bundle_dir_path
+    @bundle_dir_path ||= begin
+                           dir_path = File.join(vim_dir_path, 'bundle')
                            FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
                            dir_path
                          end
@@ -45,5 +53,13 @@ module VPM
                                   FileUtils.touch(plugins_file_path)
                                   plugins_file_path
                                 end
+  end
+
+  def self.vpmrc_path
+    File.expand_path File.join(ENV['HOME'], '.vpmrc')
+  end
+
+  def self.vimrc_path
+    File.expand_path File.join("~", ".vimrc")
   end
 end

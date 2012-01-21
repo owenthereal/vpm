@@ -16,7 +16,7 @@ module VPM
       result = false
       plugins = VPM.plugins
       if command == "install"
-        result = Commands::Install.run(self) unless plugins.installed?(name)
+        result = VPM::Commands::Install.run(self) unless plugins.installed?(name)
         plugins.plugin_installed(self) if result
       end
 
