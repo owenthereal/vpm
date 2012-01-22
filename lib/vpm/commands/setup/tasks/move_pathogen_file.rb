@@ -1,4 +1,4 @@
-class MovePathogenFile
+class VPM::Commands::Setup::Tasks::MovePathogenFile
   def initialize(base_dir)
     @source_file = File.join(base_dir, "pathogen", "autoload", "pathogen.vim")
     @destination = File.join(VPM.vim_dir_path, "autoload", "pathogen.vim")

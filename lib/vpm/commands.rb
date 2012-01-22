@@ -15,6 +15,6 @@ end
 this_directory     = File.expand_path File.dirname(__FILE__)
 commands_directory = File.join(this_directory, "commands")
 
-Dir.glob(File.join(commands_directory, "**", "*.rb")).each do |filename|
+Dir.glob(File.join(commands_directory, "*.rb")).each do |filename|
   require filename
 end

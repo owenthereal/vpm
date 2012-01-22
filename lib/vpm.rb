@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'transaction'
 require 'vpm/version'
 require 'vpm/manifest_parser'
 require 'vpm/plugin'
@@ -7,7 +6,6 @@ require 'vpm/plugins'
 require 'vpm/git'
 require 'vpm/runner'
 require 'vpm/commands'
-require 'vpm/tasks'
 
 # options
 require 'vpm/command_options/abstract_command_options'

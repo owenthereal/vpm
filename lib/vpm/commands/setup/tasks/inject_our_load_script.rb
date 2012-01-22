@@ -1,4 +1,4 @@
-class InjectOurLoadScript
+class VPM::Commands::Setup::Tasks::InjectOurLoadScript
   def initialize(backup_dir)
     @text          = "source #{VPM.vpmrc_path}"
     @backup_path = File.join(backup_dir, "vimrc_backup_#{Time.now.to_i}")

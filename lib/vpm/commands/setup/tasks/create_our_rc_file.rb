@@ -1,4 +1,4 @@
-class CreateOurRCFile
+class VPM::Commands::Setup::Tasks::CreateOurRCFile
   def initialize
     @destination = VPM.vpmrc_path
   end

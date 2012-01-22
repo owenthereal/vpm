@@ -1,4 +1,4 @@
-class Transaction
+class VPM::Commands::Setup::Transaction
   def initialize
     @tasks = []
   end

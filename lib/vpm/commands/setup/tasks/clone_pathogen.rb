@@ -1,4 +1,4 @@
-class ClonePathogen
+class VPM::Commands::Setup::Tasks::ClonePathogen
   def initialize(base_dir)
     @destination = File.join(base_dir, 'pathogen')
   end

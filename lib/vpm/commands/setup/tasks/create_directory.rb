@@ -1,4 +1,4 @@
-class CreateDirectory
+class VPM::Commands::Setup::Tasks::CreateDirectory
   def initialize(directory)
     @destination = directory
   end

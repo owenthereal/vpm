@@ -1,3 +1,5 @@
+module VPM::Commands::Setup::Tasks ; end
+
 this_directory  = File.expand_path File.dirname(__FILE__)
 tasks_directory = File.join(this_directory, "tasks")
 

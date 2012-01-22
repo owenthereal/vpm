@@ -63,3 +63,6 @@ private
     end
   end
 end
+
+require 'vpm/commands/setup/transaction'
+require 'vpm/commands/setup/tasks'
