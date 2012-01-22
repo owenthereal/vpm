@@ -20,7 +20,7 @@ module VPM
   end
 
   def self.plugins
-    @plugins ||= Core::Plugins.load_from_file(plugins_file)
+    @plugins ||= Core::Plugins.load_from_file(plugins_file_path)
   end
 
   def self.vim_dir_path
@@ -39,7 +39,7 @@ module VPM
                          end
   end
 
-  def self.plugins_file
+  def self.plugins_file_path
     @insatlled_plugins_file ||= begin
                                   vpm_dir_path = File.join(vim_dir, 'vpm')
                                   FileUtils.mkdir_p vpm_dir_path unless Dir.exists?(vpm_dir_path)
