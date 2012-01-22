@@ -2,7 +2,7 @@ require 'optparse'
 
 module VPM
   module CommandOptions
-    class AbstractCommandOptions
+    class Base
       attr_reader :opts_parser
 
       def parse!(args)

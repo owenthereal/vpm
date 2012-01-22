@@ -1,6 +1,6 @@
 module VPM
   module CommandOptions
-    class Install < AbstractCommandOptions
+    class Install < Base
       def define_parser(parser, options)
         parser.banner = "Usage: vpm install <plugin> [options]"
 

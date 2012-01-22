@@ -1,16 +1,11 @@
 require 'fileutils'
 
-# core
 require 'vpm/core'
 require 'vpm/core/plugin'
 require 'vpm/core/plugins'
 require 'vpm/core/manifest_parser'
 
-# options
-require 'vpm/command_options/abstract_command_options'
 require 'vpm/command_options'
-
-# commands
 require 'vpm/commands'
 
 require 'vpm/runner'
