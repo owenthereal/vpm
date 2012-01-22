@@ -16,14 +16,14 @@ module VPM
           options = plugin.options
 
           chdir(VPM.bundle_dir_path) do
-            result = VPM::Git.clone(options[:remote], plugin_name)
+            result = VPM::Utils::Git.clone(options[:remote], plugin_name)
 
             chdir(File.join(VPM.plugin_dir, plugin_name)) do
               if options[:tag]
-                result = VPM::Git.checkout_tag(options[:tag])
+                result = VPM::Utils::Git.checkout_tag(options[:tag])
               end
 
-              plugin.options[:revision] = VPM::Git.current_revision
+              plugin.options[:revision] = VPM::Utils::Git.current_revision
             end
 
             result

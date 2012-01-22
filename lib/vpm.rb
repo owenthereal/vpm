@@ -1,7 +1,5 @@
 require 'fileutils'
 
-require 'vpm/runner'
-
 # core
 require 'vpm/core'
 require 'vpm/core/plugin'
@@ -15,7 +13,8 @@ require 'vpm/command_options'
 # commands
 require 'vpm/commands'
 
-require 'vpm/util/git'
+require 'vpm/runner'
+require 'vpm/utils/git'
 require 'vpm/version'
 
 module VPM
