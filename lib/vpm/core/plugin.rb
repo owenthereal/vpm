@@ -1,4 +1,4 @@
-module VPM
+module VPM::Core
   class Plugin
     def self.from_hash(hash)
       self.new(hash[:name], hash[:type], hash[:options])

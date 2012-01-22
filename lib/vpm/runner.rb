@@ -48,7 +48,7 @@ module VPM
       end
 
       type = options.delete(:type)
-      plugin = Plugin.new(plugin_name, type, options)
+      plugin = Core::Plugin.new(plugin_name, type, options)
       plugin.run_command(command)
     end
   end

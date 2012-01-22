@@ -1,4 +1,4 @@
-module VPM
+module VPM::Core
   class ManifestParser
     def self.parse(content)
       self.new.parse(content)

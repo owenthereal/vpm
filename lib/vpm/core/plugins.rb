@@ -1,6 +1,6 @@
 require 'yaml'
 
-module VPM
+module VPM::Core
   class Plugins
     attr_reader :all, :installed_plugins, :removed_plugins
 

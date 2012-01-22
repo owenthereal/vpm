@@ -1,11 +1,12 @@
 require 'fileutils'
-require 'vpm/version'
-require 'vpm/manifest_parser'
-require 'vpm/plugin'
-require 'vpm/plugins'
-require 'vpm/git'
+
 require 'vpm/runner'
-require 'vpm/commands'
+
+# core
+require 'vpm/core'
+require 'vpm/core/plugin'
+require 'vpm/core/plugins'
+require 'vpm/core/manifest_parser'
 
 # options
 require 'vpm/command_options/abstract_command_options'
@@ -13,6 +14,9 @@ require 'vpm/command_options'
 
 # commands
 require 'vpm/commands'
+
+require 'vpm/util/git'
+require 'vpm/version'
 
 module VPM
   def self.run(args)
@@ -22,7 +26,7 @@ module VPM
   end
 
   def self.plugins
-    @plugins ||= Plugins.load_from_file(plugins_file)
+    @plugins ||= Core::Plugins.load_from_file(plugins_file)
   end
 
   def self.vim_dir_path
