@@ -10,8 +10,9 @@ module VPM::Core
       @removed_plugins = []
     end
 
-    def find(plugin_name)
-
+    def do_to(plugin_name)
+      plugin = installed?(plugin_name)
+      yield plugin if plugin
     end
 
     def installed?(plugin_name)
