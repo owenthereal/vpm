@@ -41,7 +41,7 @@ module VPM
 
   def self.plugins_file_path
     @insatlled_plugins_file ||= begin
-                                  vpm_dir_path = File.join(vim_dir, 'vpm')
+                                  vpm_dir_path = File.join(vim_dir_path, 'vpm')
                                   FileUtils.mkdir_p vpm_dir_path unless Dir.exists?(vpm_dir_path)
 
                                   plugins_file_path = File.join(vpm_dir_path, 'plugins.yaml')

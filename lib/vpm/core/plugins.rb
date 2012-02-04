@@ -10,6 +10,10 @@ module VPM::Core
       @removed_plugins = []
     end
 
+    def find(plugin_name)
+
+    end
+
     def installed?(plugin_name)
       all.find { |p| p.name == plugin_name }
     end
