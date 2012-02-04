@@ -13,12 +13,6 @@ require 'vpm/utils/git'
 require 'vpm/version'
 
 module VPM
-  def self.run(args)
-    command = args.shift
-    options = VPM::CommandOptions[command].parse!(args)
-    VPM::Commands[command].call options
-  end
-
   def self.plugins
     @plugins ||= Core::Plugins.load_from_file(plugins_file_path)
   end
@@ -41,20 +35,20 @@ module VPM
 
   def self.plugins_file_path
     @insatlled_plugins_file ||= begin
-                                  vpm_dir_path = File.join(vim_dir, 'vpm')
-                                  FileUtils.mkdir_p vpm_dir_path unless Dir.exists?(vpm_dir_path)
+                                  dir_path = File.join(vim_dir_path, 'vpm')
+                                  FileUtils.mkdir_p dir_path unless Dir.exists?(dir_path)
 
-                                  plugins_file_path = File.join(vpm_dir_path, 'plugins.yaml')
+                                  plugins_file_path = File.join(dir_path, 'plugins.yaml')
                                   FileUtils.touch(plugins_file_path)
                                   plugins_file_path
                                 end
   end
 
   def self.vpmrc_path
-    File.expand_path File.join(ENV['HOME'], '.vpmrc')
+    @vpmrc_path ||= File.join(vim_dir_path, '.vpmrc')
   end
 
   def self.vimrc_path
-    File.expand_path File.join("~", ".vimrc")
+    @vimrc_path ||= File.join(ENV['HOME'], ".vimrc")
   end
 end
