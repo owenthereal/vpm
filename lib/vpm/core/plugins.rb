@@ -46,7 +46,7 @@ module VPM::Core
       plugins
     end
 
-    def save_to_file(file_path = VPM.plugins_file)
+    def save_to_file(file_path = VPM.plugins_file_path)
       File.open(file_path, 'w' ) do |out|
         dump(out)
       end

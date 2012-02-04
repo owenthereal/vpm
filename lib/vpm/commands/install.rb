@@ -1,10 +1,21 @@
 module VPM
   module Commands
-    module Install
-      def self.call(options = nil)
-        plugin = VPM::Core::Plugin.new(options[:plugin_name], options[:type], options[:options])
+    class Install
+      def call(options = {})
+        if options[:plugin_name]
+          install_plugin(options[:plugin_name],
+                         options[:type],
+                         :remote => options[:remote], :tag => options[:tag])
+        else
+          #vim_plugins_file = File.join(File.expand_path('.'), 'VimPlugins')
+          #content          = File.read(vim_plugins_file)
+          #plugins          = VPM::Core::ManifestParser.parse(content)
+          #plugins.each(&:install)
+        end
+      end
 
-        type = plugin.type
+      def install_plugin(plugin_name, type, options)
+        plugin = VPM::Core::Plugin.new(plugin_name, type, options)
         result = if type == :git
                    GitInstall.run(plugin)
                  end
@@ -17,23 +28,20 @@ module VPM
           plugin_name = plugin.name
           options = plugin.options
 
-          chdir(VPM.bundle_dir_path) do
-            result = VPM::Utils::Git.clone(options[:remote], plugin_name)
+          result = Dir.chdir(VPM.bundle_dir_path) do
+            VPM::Utils::Git.clone(options[:remote], plugin_name) 
+          end
 
-            chdir(File.join(VPM.plugin_dir, plugin_name)) do
-              if options[:tag]
-                result = VPM::Utils::Git.checkout_tag(options[:tag])
-              end
-
-              plugin.options[:revision] = VPM::Utils::Git.current_revision
+          plugin_dir = File.join(VPM.bundle_dir_path, plugin_name)
+          Dir.chdir(plugin_dir) do
+            if options[:tag]
+              result = VPM::Utils::Git.checkout_tag(options[:tag])
             end
 
-            result
+            plugin.options[:revision] = VPM::Utils::Git.current_revision
           end
-        end
 
-        def self.chdir(dir)
-          Dir.chdir(dir) { yield }
+          result
         end
       end
     end
