@@ -3,19 +3,21 @@ module VPM
     class Install
       def call(options = {})
         if options[:plugin_name]
-          install_plugin(options[:plugin_name],
-                         options[:type],
-                         :remote => options[:remote], :tag => options[:tag])
-        else
-          #vim_plugins_file = File.join(File.expand_path('.'), 'VimPlugins')
-          #content          = File.read(vim_plugins_file)
-          #plugins          = VPM::Core::ManifestParser.parse(content)
-          #plugins.each(&:install)
+          install_plugin(options)
+        elsif File.exists?(VPM.vim_plugins_manifest_path)
+          content = File.read(VPM.vim_plugins_manifest_path)
+          plugins_options = VPM::Core::ManifestParser.parse(content)
+          plugins_options.each do |options|
+            install_plugin(options)
+          end
         end
       end
 
-      def install_plugin(plugin_name, type, options)
-        return if VPM.plugins.installed?(plugin_name)
+      def install_plugin(options)
+        plugin_name = options[:plugin_name]
+        type = options[:type]
+
+        return if plugin_name.nil? || type.nil? || VPM.plugins.installed?(plugin_name)
 
         plugin = VPM::Core::Plugin.new(plugin_name, type, options)
         result = if type == :git
