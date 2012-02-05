@@ -33,7 +33,7 @@ module VPM
           options = plugin.options
 
           result = Dir.chdir(VPM.bundle_dir_path) do
-            VPM::Utils::Git.clone(options[:remote], plugin_name) 
+            VPM::Utils::Git.clone(options[:remote], plugin_name)
           end
 
           plugin_dir = File.join(VPM.bundle_dir_path, plugin_name)
