@@ -3,11 +3,7 @@ module VPM
     class Update < Base
       def define_parser(parser, options)
         parser.banner = "Usage: vpm update [PLUGINS]"
-
-        parser.on("[PLUGINS]") do |plugins|
-          puts plugins
-          options[:plugin_names] = plugins
-        end
+        options[:plugin_names] = ARGV.clone if ARGV.any?
       end
     end
   end

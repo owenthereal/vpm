@@ -2,7 +2,6 @@ module VPM
   module Commands
     class Update
       def call(options = {})
-        return
         plugin_names = options.fetch(:plugin_names) { VPM.plugins.map &:name }
         plugin_names.each { |name| update_plugin name }
       end
