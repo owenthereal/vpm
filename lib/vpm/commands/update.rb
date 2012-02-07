@@ -2,6 +2,7 @@ module VPM
   module Commands
     class Update
       def call(options = {})
+        return
         plugin_names = options.fetch(:plugin_names) { VPM.plugins.map &:name }
         plugin_names.each { |name| update_plugin name }
       end
@@ -15,7 +16,7 @@ module VPM
       def update_git_plugin(plugin)
         plugin_dir = File.join(VPM.bundle_dir_path, plugin.name)
         Dir.chdir(plugin_dir) do
-          puts "BIG FAT FAILURE" unless system("git pull origin master")
+          puts "Failed to update #{plugin.name}" unless system("git pull origin master")
         end
       end
     end
