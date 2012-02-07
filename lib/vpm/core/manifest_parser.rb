@@ -15,12 +15,12 @@ module VPM::Core
 
     def plugin(name, options = {})
       # FIXME hardcode to install for now
-      options = VPM::CommandOptions["Install"].parse!(options_to_args(options))
+      options = VPM::CommandOptions["Install"].parse!(options_to_args(name, options))
       @plugins[name] = options
     end
 
-    def options_to_args(options)
-      args = []
+    def options_to_args(name, options)
+      args = [name]
 
       if options[:git]
         args += ["--git", options[:git]]

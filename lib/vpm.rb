@@ -33,6 +33,10 @@ module VPM
                          end
   end
 
+  def self.vim_plugins_manifest_path
+    File.join(File.expand_path('.'), 'VimPlugins')
+  end
+
   def self.plugins_file_path
     @insatlled_plugins_file ||= begin
                                   dir_path = File.join(vim_dir_path, 'vpm')
