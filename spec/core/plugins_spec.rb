@@ -2,8 +2,9 @@ require 'spec_helper'
 
 module VPM::Core
   describe Plugins do
+    let(:plugins) { Plugins.new }
+
     it "dumps plugins as YAML" do
-      plugins = Plugins.new
       plugins.plugin_installed(Plugin.new("command-t", :git, :remote => "http://xxx.git", :tag => "1.2.0"))
       plugins.dump.should == YAML.dump([{:name => "command-t", :type => :git, :options => {:remote => "http://xxx.git", :tag => "1.2.0"}}])
     end
@@ -17,7 +18,6 @@ module VPM::Core
     :remote: http://xxx.git
     :tag: 1.2.0
       EOS
-      plugins = Plugins.new
       plugins.load(plugins_yaml)
       plugins.all.size.should == 1
 
@@ -30,7 +30,6 @@ module VPM::Core
     end
 
     it "returns empty when content to deserialize is empty" do
-      plugins = Plugins.new
       plugins.load("")
       plugins.all.should be_empty
     end
@@ -39,6 +38,27 @@ module VPM::Core
       FileUtils.touch('foo')
       plugins = Plugins.load_from_file('foo')
       plugins.all.should be_empty
+    end
+
+    context "#do_to" do
+      it "executes the block on the given plugin" do
+        mock_plugin = double("plugin")
+        mock_plugin.stub(:name).and_return "command-t"
+        mock_plugin.should_receive :count_it!
+        plugins.plugin_installed mock_plugin
+        plugins.do_to "command-t" do |plugin|
+          plugin.count_it!
+        end
+      end
+
+      it "does nothing if the plugin doesn't exist" do
+        mock_plugin = double("plugin")
+        mock_plugin.stub(:name).and_return "command-t"
+        plugins.plugin_installed mock_plugin
+        plugins.do_to "thingy" do |plugin|
+          plugin.count_it!
+        end
+      end
     end
   end
 end
